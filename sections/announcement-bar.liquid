@@ -1,0 +1,144 @@
+
+  {% if section.settings.show_announcement %}
+ <div class = "announcement-bar" id = "hide-bar">
+   {%- if section.settings.home_page_only == false or template.name == 'index' -%}
+     <a href = "{{ section.settings.link }}" class = "announcement-bar__link">
+       <p class = "annoucenement_bar__message">{{section.settings.text}}</p> 
+     </a>
+     <button class="close-announcement-bar" onclick = "hideBar()">×</button>
+     {% endif %}
+ </div>
+  {% endif %}
+  
+ <style>
+   .announcement-bar {
+     text-align: center;
+   }
+
+   .announcement-bar, .annoucenement_bar__message {
+     {% if section.settings.bold-text %}
+       font-weight: bold;
+     {% endif %}
+
+     font-size: {{ section.settings.font-size }}px;
+     padding: {{ section.settings.height }}px 0;
+     background-color: {{section.settings.background-color}};
+     color: {{section.settings.font-color}};
+     margin: 0;
+     text-transform: {{section.settings.text-transform}};
+   }
+
+   .close-announcement-bar {
+     position: absolute;
+     top: 0;
+     right: 0;
+     padding: 5px 10px;
+     background-color: #333;
+     color: #fff;
+     cursor: pointer;
+}
+ </style>
+
+  <script>
+    function hideBar() {
+      document.querySelector('.announcement-bar').style.display = 'none';
+      localStorage.setItem('announcement_closed', 'true');
+    }
+    const announcementClosed = localStorage.getItem('announcement_closed');
+    if (announcementClosed === 'true') {
+      document.querySelector('.announcement-bar').style.display = 'none';
+    }
+  </script>
+
+{% schema %}
+{
+  "name": "New Announcement Bar",
+  "settings": [
+    {
+     "type": "checkbox",
+      "id": "show_announcement",
+      "label": "Show announcement",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "home_page_only",
+      "label": "Home page only",
+      "default": true
+    },
+    {
+     "type": "text",
+      "id": "text",
+      "label": "Announcement text",
+      "default": "Announce something here" 
+    },
+    {
+      "type": "select",
+      "id": "text-transform",
+      "label": "Text transform",
+      "options": [
+            {
+              "value": "normal",
+              "label": "Normal"
+            },
+            {
+              "value": "lowercase",
+              "label": "Lowercase"
+            },
+            {
+              "value": "uppercase",
+              "label": "Uppercase"
+            },
+            {
+              "value": "capitalize",
+              "label": "Capitalize first letter"
+            }
+      ],
+      "default": "normal"
+    },
+    {
+     "type": "checkbox",
+      "id": "bold-text",
+      "label": "Bold text",
+      "default": false 
+    },
+    {
+     "type": "range",
+      "id": "font-size",
+      "label": "Font Size",
+      "default": 14,
+      "min": 12,
+      "max": 20,
+      "step": 2,
+      "unit": "px"
+    },
+    {
+     "type": "range",
+      "id": "height",
+      "label": "Height",
+      "default": 6,
+      "min": 0,
+      "max": 20,
+      "step": 1,
+      "unit": "px"
+    },
+    {
+      "type": "color",
+      "id": "background-color",
+      "label": "Background color",
+      "default": "#808080"
+    },
+    {
+      "type": "color",
+      "id": "font-color",
+      "label": "Font color",
+      "default": "#FFFFFF"
+    },
+    {
+     "type": "url",
+      "id": "link",
+      "label": "Link" 
+    }
+  ]
+}
+{% endschema %}

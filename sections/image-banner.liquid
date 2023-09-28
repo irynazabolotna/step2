@@ -1,0 +1,348 @@
+
+<div class = "hero-banner">
+  
+    <div class="image1 hero-banner__image-slider"> 
+      {%- for block in section.blocks -%}
+        {%- case block.type -%}
+          {%- when 'heading' -%}
+          <h2 class = "hero-banner__header2 {{ block.settings.header-style }}" {{ block.shopify_attributes }}>{{ block.settings.heading }}</h2> 
+      
+          {%- when 'text' -%}
+          <p class = "hero-banner__message {{ block.settings.text-style }}" {{ block.shopify_attributes }}>{{ block.settings.text }}</p> 
+      
+          {%- when 'button' -%}
+          <a role="link" href= "{{ block.settings.button-link }}">
+          <button class = "hero-banner__button"  {{ block.shopify_attributes }}>{{ block.settings.button-label }}</button>
+          </a>
+          
+        {%- endcase -%}
+      {%- endfor -%}
+    </div>
+    
+      <div class="image2 hero-banner__image-slider">
+        {%- for block in section.blocks -%}
+        {%- case block.type -%}
+          {%- when 'heading' -%}
+         <h2 class = "hero-banner__header2 {{ block.settings.header-style }}"{{ block.shopify_attributes }}>{{ block.settings.heading }}</h2> 
+        
+          {%- when 'text' -%}
+         <p class = "hero-banner__message  {{ block.settings.text-style }}" {{ block.shopify_attributes }}>{{ block.settings.text }}</p>
+        
+         {%- when 'button' -%}
+         <a role="link" href= "{{ block.settings.button-link }}">
+          <button class = "hero-banner__button"  {{ block.shopify_attributes }}>{{ block.settings.button-label }}</button>
+          </a>
+        
+        {%- endcase -%}
+      {%- endfor -%}
+    </div>
+
+  <a class="next" onclick="plusSlides(1)">&#10095;</a>
+  
+   <div style="text-align:center">
+    <span class="dot" onclick="currentSlide(1)"></span>
+    <span class="dot" onclick="currentSlide(2)"></span>
+  </div>
+  
+</div>
+
+
+
+<style>
+  
+  .hero-banner {
+    width: 100%;
+    height: 600px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .image1 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* align-items: center; */
+    margin: auto;
+    padding: 10px;
+    width: 100%;
+    height: 550px;
+    background-image: url( '{{ section.settings.image1 | img_url: 'master'}}');
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+    .image2 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    padding: 10px;
+    width: 100%;
+    height: 550px;
+    background-image: url( '{{ section.settings.image2 | img_url: 'master'}}');
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+  .hero-banner__header2 {
+    font-size: {{ section.settings.heading-font}}px;
+  }
+
+  .hero-banner__message{
+    font-size: {{ section.settings.font-size}}px;
+  }
+  
+  .hero-banner__header2, .hero-banner__message{
+    color: {{ section.settings.font-color}};
+    margin: 3px auto;
+    padding: 10px;
+  }
+
+
+  .hero-banner__button{
+    color: {{ section.settings.button-color}};
+    background-color: {{section.settings.button-background-color}};
+    border-radius: {{ section.settings.border-radius}}px;
+    padding: {{ section.settings.height }}px 0;
+    width: 100px;
+    position: absolute;
+    bottom: 20%;
+    left: 10%;
+    border: 0;
+    text-decoration: none;
+    text-align: center;
+    margin: auto;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+  }
+
+  .next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    width: auto;
+    margin-top: -22px;
+    padding: 16px;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    transition: 0.6s ease;
+    border-radius: 0 3px 3px 0;
+    user-select: none;
+    right: 0;
+    border-radius: 3px 0 0 3px;
+  }
+  
+  .next:hover {
+  background-color: rgba(0,0,0,0.8);
+  }
+  
+  .dot {
+  cursor: pointer;
+  height: 10px;
+  width: 10px;
+  margin: 0 2px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.6s ease;
+  }
+ 
+</style>
+
+<script>
+  let slideIndex = 1;
+  showSlides(slideIndex);
+
+  function plusSlides(n) {
+  showSlides(slideIndex += n);
+}
+
+  function currentSlide(n) {
+  showSlides(slideIndex = n);
+}
+
+  function showSlides(n) {
+  let i;
+  let slides = document.getElementsByClassName("hero-banner__image-slider");
+  let dots = document.getElementsByClassName("dot");
+  if (n > slides.length) {slideIndex = 1}
+  if (n < 1) {slideIndex = slides.length}
+  for (i = 0; i < slides.length; i++) {
+    slides[i].style.display = "none";
+  }
+  for (i = 0; i < dots.length; i++) {
+    dots[i].className = dots[i].className.replace(" active", "");
+  }
+  slides[slideIndex-1].style.display = "block";
+  dots[slideIndex-1].className += " active";
+}
+</script>
+  
+
+{% schema %}
+  {
+    "name": "New Hero Banner",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "image1",
+        "label": "Image"
+      },
+      {
+        "type": "image_picker",
+        "id": "image2",
+        "label": "Image"
+      },
+      {
+        "type": "color",
+        "id": "font-color",
+        "label": "Font color",
+        "default": "#000000"
+      },
+      {
+        "type": "range",
+        "id": "heading-font",
+        "label": "Font Size for Header",
+        "default": 16,
+        "min": 14,
+        "max": 26,
+        "step": 2,
+        "unit": "px"
+      },
+      {
+      "type": "color",
+      "id": "button-background-color",
+      "label": "Button Background color",
+      "default": "#808080"
+      },
+      {
+       "type": "color",
+       "id": "button-color",
+       "label": "Button font color",
+       "default": "#000000"
+      },
+      {
+       "type": "range",
+        "id": "height",
+        "label": "Button Height",
+        "default": 6,
+        "min": 0,
+        "max": 20,
+        "step": 1,
+        "unit": "px"
+      },
+      {
+         "type": "range",
+          "id": "border-radius",
+          "label": "Button Border Radius",
+          "default": 10,
+          "min": 0,
+          "max": 30,
+          "step": 1,
+          "unit": "px"
+      },
+      {
+         "type": "range",
+          "id": "font-size",
+          "label": "Font Size Text",
+          "default": 14,
+          "min": 12,
+          "max": 20,
+          "step": 2,
+          "unit": "px"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "heading",
+        "name": "Heading",
+        "limit": 1,
+        "settings": [
+          {
+            "type": "inline_richtext",
+            "id": "heading",
+            "default": "Hero Banner",
+            "label": "Hero banner"
+          },
+          {
+            "type": "select",
+            "id": "header-style",
+            "options": [
+              {
+                "value": "capitalize",
+                "label": "Capitalize"
+              },
+              {
+                "value": "lowercase",
+                "label": "Lowercase"
+              },
+              {
+                "value": "uppercase",
+                "label": "Uppercase"
+              }
+            ],
+            "label":"Header Style",
+            "default": "capitalize"
+          }
+          
+        ]
+      },
+      {
+        "type": "text",
+        "name": "Text name",
+        "limit": 1,
+        "settings": [
+          {
+            "type": "inline_richtext",
+            "id": "text",
+            "default": "Write here more details",
+            "label": "t:sections.image-banner.blocks.text.settings.text.label"
+          },
+          {
+            "type": "select",
+            "id": "text-style",
+            "options": [
+              {
+                "value": "body",
+                "label": "t:sections.image-banner.blocks.text.settings.text_style.options__1.label"
+              },
+              {
+                "value": "subtitile",
+                "label": "t:sections.image-banner.blocks.text.settings.text_style.options__2.label"
+              },
+              {
+                "value": "caption-with-letter-spacing",
+                "label": "t:sections.image-banner.blocks.text.settings.text_style.options__3.label"
+              }
+            ],
+            "label":"t:sections.image-banner.blocks.text.settings.text_style.label",
+            "default": "body"
+          }
+        ]
+      },
+      {
+        "type": "button",
+        "name": "Button",
+        "limit": 1,
+        "settings": [
+          {
+            "type": "text",
+            "id": "button-label",
+            "default": "Button",
+            "label": "Button text"
+          },
+          {
+            "type" : "url",
+            "id": "button-link",
+            "label": "Button link"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

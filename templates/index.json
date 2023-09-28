@@ -1,0 +1,78 @@
+{
+  "sections": {
+    "image_banner": {
+      "type": "image-banner",
+      "blocks": {
+        "7acdcd6f-c565-4013-98e5-7158104a4dbb": {
+          "type": "heading",
+          "settings": {
+            "heading": "<em>Follow the tone guidelines when rewriting the merchant input.<\/em>",
+            "header-style": "capitalize"
+          }
+        },
+        "f9821a64-4c15-42fd-a8cc-51d82f1c29f8": {
+          "type": "text",
+          "settings": {
+            "text": "Write here more details",
+            "text-style": "body"
+          }
+        },
+        "606cf541-cee7-49cd-8c8f-833687274264": {
+          "type": "button",
+          "settings": {
+            "button-label": "Shop Now",
+            "button-link": ""
+          }
+        }
+      },
+      "block_order": [
+        "7acdcd6f-c565-4013-98e5-7158104a4dbb",
+        "f9821a64-4c15-42fd-a8cc-51d82f1c29f8",
+        "606cf541-cee7-49cd-8c8f-833687274264"
+      ],
+      "settings": {
+        "image1": "shopify:\/\/shop_images\/spa-supplies.jpg",
+        "image2": "shopify:\/\/shop_images\/person-fishing-on-the-beach-is-silhouetted-at-sunset.jpg",
+        "font-color": "#433232",
+        "heading-font": 26,
+        "button-background-color": "#808080",
+        "button-color": "#ffffff",
+        "height": 13,
+        "border-radius": 16,
+        "font-size": 20
+      }
+    },
+    "featured_collection": {
+      "type": "featured-collection",
+      "settings": {
+        "title": "Featured products",
+        "heading_size": "h2",
+        "description": "",
+        "show_description": false,
+        "description_style": "body",
+        "collection": "all",
+        "products_to_show": 8,
+        "columns_desktop": 4,
+        "full_width": false,
+        "show_view_all": true,
+        "view_all_style": "solid",
+        "enable_desktop_slider": false,
+        "color_scheme": "background-1",
+        "image_ratio": "adapt",
+        "image_shape": "default",
+        "show_secondary_image": true,
+        "show_vendor": false,
+        "show_rating": false,
+        "enable_quick_add": false,
+        "columns_mobile": "2",
+        "swipe_on_mobile": false,
+        "padding_top": 44,
+        "padding_bottom": 36
+      }
+    }
+  },
+  "order": [
+    "image_banner",
+    "featured_collection"
+  ]
+}
